@@ -1,0 +1,9 @@
+# IDE / Text Editor
+.vscode
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+*.csv
