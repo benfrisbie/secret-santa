@@ -1,1 +1,1 @@
-TODO
+This directory contains example config yaml files for several different scenarios.
