@@ -2,7 +2,7 @@ import random
 from typing import List
 
 class Participant:
-    """Participant represents an individual participating in the secret santa gift exchange. 
+    """Participant represents a person participating in the secret santa gift exchange. 
     
     Positional Arguments:
       name: Name of the participant
@@ -11,21 +11,33 @@ class Participant:
     def __init__(self, name: str, email: str):
         self.name = name
         self.email = email
+        self._excludes = [self]
         self._recipient = None
 
-    def format_text(self, email_message_template: str) -> str:
-        """Formats the text to send to the participant.
 
-        Positional Arguments:
-            email_message_template: message template to format
+def build_participant_list_from_config(config: dict) -> List[Participant]:
+    """Build the list of participants from the config file
 
-        Returns:
-            The formatted text.
-        """
-        return email_message_template.format(name=self.name, recipient=self._recipient.name)
+    Positional Arguments:
+        config: the config dict containing settings
 
+    Returns:
+        The constructed list of participants
+    """
+    participants = {}
+    # First create participants
+    for p in config["participants"]:
+        participants[p["name"]] = Participant(p["name"], p["email"])
 
-def random_picker(participants: List[Participant]) -> None:
+    # Next setup exclusion rules
+    for p in config["participants"]:
+        participant = participants[p["name"]]
+        for exclude in p.get("excludes", []):
+            participant._excludes.append(participants[exclude])
+    
+    return list(participants.values())
+
+def simulate_drawing(participants: List[Participant]) -> None:
     """Randomly choose a recipient for each participant
 
     Positional Arguments:
@@ -35,7 +47,7 @@ def random_picker(participants: List[Participant]) -> None:
         pool = participants.copy()
         # Loop through each participant and choose a random person from the remaining pool of people
         for participant in participants:
-            recipient = random.choice([p for p in pool if p != participant])
+            recipient = random.choice([p for p in pool if p not in participant._excludes])
             participant._recipient = recipient
             pool.remove(recipient)
     except:
