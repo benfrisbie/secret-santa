@@ -1,0 +1,17 @@
+participants:
+  - name: Ben
+    email: ben@gmail.com
+    excludes:
+      - Sarah # Ben is dating Sarah
+  - name: Sarah
+    email: sarah@gmail.com
+    excludes:
+      - Ben # Sarah is dating Ben
+  - name: Bill
+    email: bill@gmail.com
+    excludes:
+      - Taylor # Bill is married to Taylor
+  - name: Taylor
+    email: taylor@gmail.com
+    excludes:
+      - Bill # Taylor is married to Bill

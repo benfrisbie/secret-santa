@@ -1,0 +1,17 @@
+participants:
+  - name: Ben
+    email: ben@gmail.com
+    excludes:
+      - Bill # Ben received Bill last year
+  - name: Sarah
+    email: sarah@gmail.com
+    excludes:
+      - Taylor # Sarah received Taylor last year
+  - name: Bill
+    email: bill@gmail.com
+    excludes:
+      - Sarah # Bill received Sarah last year
+  - name: Taylor
+    email: taylor@gmail.com
+    excludes:
+      - Ben # Taylor received Ben last year

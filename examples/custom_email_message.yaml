@@ -1,0 +1,3 @@
+# Email information
+email:
+  message: '<html><body>Howdy {name}! Your Secret Santa is {recipient}</body></html>'

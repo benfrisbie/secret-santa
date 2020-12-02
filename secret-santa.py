@@ -23,7 +23,7 @@ if __name__ == "__main__":
 
     # Connect to SMTP server
     smtp_server = None
-    if "smtp" in config and not config["dry_run"]:
+    if "smtp" in config and not config.get("dry_run", False):
         smtp_server = smtplib.SMTP(config["smtp"]["host"], config["smtp"]["port"])
         if config["smtp"].get("tls", False):
             smtp_server.starttls()

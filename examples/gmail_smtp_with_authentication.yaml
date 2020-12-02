@@ -1,23 +1,7 @@
-# Perform a test run and print the pairings to the console instead of sending an email
-dry_run: true
-
-# SMTP server information
+# Authenticate to gmail SMTP server as user@gmail.com
 smtp:
   host: smtp.gmail.com
   port: 587
   username: user@gmail.com
   password: password
   tls: true
-
-# Email information
-email:
-  from: user@gmail.com
-  subject: Secret Santa
-  message: '<html><body>Hello {name},<br><br>You got {recipient} for the Secret Santa gift exchange.<br><br>The price limit is $25.<br><br>Merry Christmas!</body></html>'
-
-# Information on people participating in the gift exchange
-participants:
-  - name: Ben
-    email: ben@gmail.com
-  - name: Sarah
-    email: sarah@gmail.com
