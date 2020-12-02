@@ -1,7 +1,7 @@
 Secret Santa is a program written in python that simulates drawing random names out of a hat for a [secret santa gift exchange](https://en.wikipedia.org/wiki/Secret_Santa) and then sends an email to each person participating notifying them who their secret recipient is. 
 
 The only default rule in place is that a person can not get themself as a recipient. Other rules can easily be created in the config. Here are some common situations that can be accommodated:
-- Preventing a significant other as a recipient [example](examples/examples/prevent_significant_others.yaml)
+- Preventing a significant other as a recipient [example](examples/prevent_significant_others.yaml)
 - Preventing the same recipient you got last year [example](examples/prevent_previous_years_recipient.yaml)
 
 # Getting Started
