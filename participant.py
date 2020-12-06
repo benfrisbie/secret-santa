@@ -52,4 +52,4 @@ def simulate_drawing(participants: List[Participant]) -> None:
             pool.remove(recipient)
     except:
         # Occasionally there will be an IndexError exception when the last person can only pick themself. Try again
-        return random_picker(participants)
+        return simulate_drawing(participants)

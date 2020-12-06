@@ -6,6 +6,9 @@ from email.mime.multipart import MIMEMultipart
 
 from participant import Participant, build_participant_list_from_config, simulate_drawing
 
+# https://en.wikipedia.org/wiki/SMS_gateway
+mobile_carrier_sms_gateways = ["sms.alltelwireless.com", "txt.att.net", "sms.myboostmobile.com", "mms.cricketwireless.net", "mymetropcs.com", "text.republicwireless.com", "messaging.sprintpcs.com", "tmomail.net", "email.uscc.net", "vtext.com", "vmobl.com"]
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Simulate picking names out of a hat for a secret santa gift exchange')
     parser.add_argument('--config_path', type=str, default='config.yaml', help="path to yaml config file")
@@ -41,7 +44,10 @@ if __name__ == "__main__":
         if smtp_server:
             message["To"] = participant.email
             message.attach(MIMEText(text, "html"))
-            smtp_server.sendmail(config["email"]["from"], participant.email, message.as_string())
+            if participant.email.split("@")[1] in mobile_carrier_sms_gateways:
+                smtp_server.sendmail(config["email"]["from"], participant.email, text)
+            else :
+                smtp_server.sendmail(config["email"]["from"], participant.email, message.as_string())
         else:
             print(text)
 
